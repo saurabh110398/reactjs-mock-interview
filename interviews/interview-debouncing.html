@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    let count = 0;
+    function getData() {
+      console.log("getting the data:: ", count++);
+    }
+
+    let debouncing = function (fn, delay) {
+      let timer;
+      return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn();
+        }, delay);
+      };
+    };
+    const throttling = function(fn, delay){
+      let flag =true;
+      return function(){
+        if(flag)  fn();
+        // console.log('flag:11: ',flag);
+        flag=false;
+        setTimeout(()=>{
+          flag=true;
+          // console.log('flag:  set: ',flag);
+        },delay);
+        // console.log('flag:: ',flag);
+        
+        
+
+      }
+    }
+    let debouncedFunction = debouncing(getData, 300);
+    let throttledFunction = throttling(getData, 1000)
+  </script>
+  <body>
+    <h1>Debouncing</h1>
+    <input type="text" onkeyup="debouncedFunction()"  placeholder="debouncing"/>
+    <input type="text" onkeyup="throttledFunction()" placeholder="throttling"/>
+    <button onClick="throttledFunction()">Click</button>
+  </body>
+</html>

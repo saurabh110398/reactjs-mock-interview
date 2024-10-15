@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        ASYNC/AWAIT LEARNING
+    </h1>
+    <button class="start">START</button>
+    <button class="stop">STOP</button>
+
+
+</body>
+<script>
+
+
+    let changeColor = () => {
+        let random = parseInt(Math.random() * 10000 + 1)
+        document.body.style.backgroundColor = `#ff${random}`
+    }
+    let interval
+    document.querySelector('.start').addEventListener('click', () => {
+        interval = setInterval(changeColor, 500);
+    })
+    document.querySelector('.stop').addEventListener('click',() => {
+        
+        document.body.style.backgroundColor = 'white';
+        clearInterval(interval)
+    })
+
+
+
+</script>
+<!-- <script>
+    const changeText = ()=>{
+        document.querySelector('h1').innerHTML = Math.floor(Math.random() *10 + 1);
+    }
+
+    let interval;
+    document.querySelector('.stop').addEventListener('click',(e)=>{
+        e.preventDefault();
+        clearTimeout(interval);
+        console.log('stopp');
+    })
+    document.querySelector('.start').addEventListener('click',(e)=>{
+        interval = setInterval(changeText,1000);
+    })
+
+
+    // let changeMe = setInterval(changeText,2000)
+
+    // document.querySelector('button').addEventListener('click',(e)=>{
+    //     e.preventDefault();
+    //     clearTimeout(changeMe);
+    //     console.log('stopp');
+    // })
+
+
+</script> -->
+
+</html>

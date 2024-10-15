@@ -1,4 +1,4 @@
-// How Specificity Works:
+// type selectors in c:
 // --------------
 // CSS specificity determines which styles are applied
 //  to an element when there are conflicting rules. 
@@ -135,7 +135,7 @@ function abc(){
    //    name:'Ruby'
    // }//----> return the non primitive values
    // return [1,2,3]
-   return ()=>{}
+   // return ()=>{}
 }
 
 const result = new abc();
@@ -146,6 +146,120 @@ console.log(result);;
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
+
+import React, { Component, useEffect, useState, useRef } from "react";
+
+import "./App.css";
+let obj = { paddingRight: "14px" };
+
+const App = () => {
+  let [localData, setLocalData] = useState({
+    chk1: false,
+    chk2: false,
+    chk3: false,
+    chk4: false,
+  });
+  let [all, setAll] = useState(false);
+
+  useEffect(() => {
+    console.log("localdata :: ", localData);
+    let status = Object.values(localData).every((ele) => ele == true);
+    console.log("status:: ", status);
+    if (status) {
+      setAll({
+        ["chkAll"]: status,
+      });
+    } else {
+      setAll({
+        ["chkAll"]: false,
+      });
+    }
+  }, [localData]);
+
+  const handleClick = (e) => {
+    let name = e.target.name;
+    let value = e.target.checked;
+    setLocalData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // console.log(name, ":", value);
+  };
+  const handleClickAll = (e) => {
+    let name = e.target.name;
+    let value = e.target.checked;
+    setAll((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    Object.keys(localData).map((key) => {
+      console.log(key);
+      key != "chkAll"
+        ? setLocalData((prev) => ({
+            ...prev,
+            [key]: value,
+          }))
+        : "";
+    });
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>CheckBox:: Select All</h1>
+      <div>
+        <label htmlFor="chk1" style={obj}>
+          Select All
+        </label>
+        <input
+          name="chkAll"
+          type="checkbox"
+          onChange={handleClickAll}
+          checked={all.chkAll ?? false}
+        />
+      </div>
+      <div style={{ display: "flex" }}>
+        <input
+          name="chk1"
+          type="checkbox"
+          onChange={handleClick}
+          checked={localData.chk1 ?? false}
+        />
+        <label htmlFor="chk1" style={obj}>
+          1
+        </label>
+        <input
+          name="chk2"
+          type="checkbox"
+          onChange={handleClick}
+          checked={localData.chk2 ?? false}
+        />
+        <label htmlFor="chk2" style={obj}>
+          2
+        </label>
+        <input
+          name="chk3"
+          type="checkbox"
+          onChange={handleClick}
+          checked={localData.chk3 ?? false}
+        />
+        <label htmlFor="chk3" style={obj}>
+          3
+        </label>
+        <input
+          name="chk4"
+          type="checkbox"
+          onChange={handleClick}
+          checked={localData.chk4 ?? false}
+        />
+        <label htmlFor="chk4" style={obj}>
+          4
+        </label>
+      </div>
+    </div>
+  );
+};
+export default App;
 
 
 

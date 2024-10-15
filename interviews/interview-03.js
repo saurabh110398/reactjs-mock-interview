@@ -21,7 +21,8 @@ function test(x,y){
 }
 console.log(test(100,200));
 
-// 'use strict' strict mode --> different functionality...
+// 'use strict' strict mode --> 300
+// 'use strict' non-strict mode --> 600
 
 {
     function test2(){

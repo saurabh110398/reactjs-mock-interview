@@ -5,7 +5,7 @@ setTimeout(() => {
   console.log('setTimeout');
 }, 0);
 
-new Promise((res, rej)=> console.log('promise consumed'))
+new Promise((res, rej)=> console.log('promise consumed'), res())
 .then(() => {
   console.log('Promise');
 });

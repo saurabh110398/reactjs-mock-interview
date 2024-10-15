@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="red">Color changes to Red</button>
+    <button id="yellow">Color changes to yellow</button>
+
+</body>
+<script>
+    document.getElementById('red').onclick = handleClick('red')
+    function handleClick(color) {
+        return function(){
+            console.log('clicked',color);
+        document.body.style.backgroundColor = `${color}`;
+        }
+    }
+</script>
+
+</html>
